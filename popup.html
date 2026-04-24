@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=360" />
+  <title>PhantomHook</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <span class="brand-icon">🛡️</span>
+        <h1 class="brand-name">Phantom<span class="accent">Hook</span></h1>
+      </div>
+      <span class="version">v1.0</span>
+    </header>
+
+    <!-- Status Card -->
+    <section class="status-card">
+      <div class="status-badge" id="statusBadge">
+        <span class="status-dot" id="statusDot"></span>
+        <span class="status-text" id="statusText">Scanning…</span>
+      </div>
+      <p class="current-url" id="currentUrl">—</p>
+    </section>
+
+    <!-- Stats Row -->
+    <section class="stats-row">
+      <div class="stat">
+        <span class="stat-value" id="scannedCount">0</span>
+        <span class="stat-label">Scanned</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="blockedCount">0</span>
+        <span class="stat-label">Blocked</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="whitelistedCount">0</span>
+        <span class="stat-label">Whitelisted</span>
+      </div>
+    </section>
+
+    <!-- Actions -->
+    <section class="actions">
+      <button class="btn btn-primary" id="whitelistBtn">
+        <span class="btn-icon">✅</span> Whitelist this Website
+      </button>
+      <button class="btn btn-secondary" id="removeWhitelistBtn" style="display:none;">
+        <span class="btn-icon">🚫</span> Remove from Whitelist
+      </button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Local AI · Zero Cloud Dependency · MV3 Secure</p>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

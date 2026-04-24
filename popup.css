@@ -1,0 +1,246 @@
+/* ─── PhantomHook Popup ─── */
+:root {
+  --bg-primary:   #0d0f14;
+  --bg-card:      #151820;
+  --bg-card-alt:  #1a1e28;
+  --accent:       #00e5ff;
+  --accent-dim:   #00b8d4;
+  --danger:       #ff1744;
+  --warning:      #ffc400;
+  --safe:         #00e676;
+  --text-primary: #e8eaf6;
+  --text-muted:   #78849e;
+  --border:       rgba(255,255,255,0.06);
+  --radius:       12px;
+  --glass:        rgba(255,255,255,0.04);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 360px;
+  min-height: 420px;
+  font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+/* ─── Container ─── */
+.popup-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(0,229,255,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(255,23,68,0.04) 0%, transparent 60%),
+    var(--bg-primary);
+}
+
+/* ─── Header ─── */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-icon {
+  font-size: 22px;
+  filter: drop-shadow(0 0 6px var(--accent));
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.brand-name {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.accent { color: var(--accent); }
+
+.version {
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--glass);
+  padding: 2px 8px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+}
+
+/* ─── Status Card ─── */
+.status-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+}
+
+.status-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  animation: scan-line 3s linear infinite;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+/* Status variants */
+.status-badge.safe          { border-color: var(--safe);    color: var(--safe); }
+.status-badge.safe .status-dot    { background: var(--safe);    box-shadow: 0 0 8px var(--safe); }
+.status-badge.suspicious   { border-color: var(--warning); color: var(--warning); }
+.status-badge.suspicious .status-dot { background: var(--warning); box-shadow: 0 0 8px var(--warning); }
+.status-badge.danger        { border-color: var(--danger);  color: var(--danger); }
+.status-badge.danger .status-dot  { background: var(--danger);  box-shadow: 0 0 8px var(--danger); }
+.status-badge.unknown       { border-color: var(--text-muted); color: var(--text-muted); }
+
+.current-url {
+  font-size: 12px;
+  color: var(--text-muted);
+  word-break: break-all;
+  line-height: 1.4;
+  max-height: 36px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ─── Stats Row ─── */
+.stats-row {
+  display: flex;
+  gap: 8px;
+}
+
+.stat {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 8px;
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.stat-label {
+  display: block;
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+/* ─── Buttons ─── */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-dim), var(--accent));
+  color: #0d0f14;
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(0,229,255,0.3);
+}
+.btn-primary:active { transform: translateY(0); }
+
+.btn-secondary {
+  background: var(--bg-card-alt);
+  color: var(--danger);
+  border: 1px solid rgba(255,23,68,0.2);
+}
+.btn-secondary:hover {
+  background: rgba(255,23,68,0.1);
+  border-color: var(--danger);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ─── Footer ─── */
+.footer {
+  text-align: center;
+  padding-top: 4px;
+  border-top: 1px solid var(--border);
+}
+.footer p {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+/* ─── Animations ─── */
+@keyframes pulse-glow {
+  0%, 100% { filter: drop-shadow(0 0 4px var(--accent)); }
+  50%      { filter: drop-shadow(0 0 12px var(--accent)); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.3; }
+}
+
+@keyframes scan-line {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}

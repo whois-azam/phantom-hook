@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "PhantomHook — Zero-Day Threat Detection",
+  "version": "1.0.0",
+  "description": "AI-powered phishing & zero-day threat detection with local ML inference and real-time DOM analysis.",
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "webNavigation",
+    "scripting",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://inceptions404-backend.onrender.com/*",
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "PhantomHook"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "ui/warning.html",
+        "assets/models/model.onnx",
+        "assets/data/safelist.json",
+        "assets/data/blacklist.json",
+        "ort/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,213 @@
+/* ─── PhantomHook Warning Page ─── */
+:root {
+  --bg:          #0a0a0c;
+  --card-bg:     #141418;
+  --danger:      #ff1744;
+  --danger-dim:  #d50032;
+  --danger-glow: rgba(255, 23, 68, 0.15);
+  --accent:      #00e5ff;
+  --text:        #e8eaf6;
+  --text-muted:  #6b7280;
+  --border:      rgba(255, 23, 68, 0.2);
+  --radius:      14px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ─── Container ─── */
+.warning-container {
+  position: relative;
+  max-width: 520px;
+  width: 90%;
+  padding: 48px 36px;
+  text-align: center;
+  z-index: 1;
+}
+
+/* ─── Particles ─── */
+.particles {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.particles span {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--danger);
+  border-radius: 50%;
+  opacity: 0;
+  animation: float-up 6s ease-in-out infinite;
+}
+.particles span:nth-child(1) { left: 10%; animation-delay: 0s;   animation-duration: 5s; }
+.particles span:nth-child(2) { left: 30%; animation-delay: 1s;   animation-duration: 7s; }
+.particles span:nth-child(3) { left: 50%; animation-delay: 2s;   animation-duration: 4s; }
+.particles span:nth-child(4) { left: 65%; animation-delay: 0.5s; animation-duration: 6s; }
+.particles span:nth-child(5) { left: 80%; animation-delay: 1.5s; animation-duration: 5s; }
+.particles span:nth-child(6) { left: 92%; animation-delay: 3s;   animation-duration: 8s; }
+
+/* ─── Shield ─── */
+.shield-icon {
+  color: var(--danger);
+  margin-bottom: 20px;
+  animation: pulse-danger 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px var(--danger-glow));
+}
+
+/* ─── Typography ─── */
+.title {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: var(--danger);
+  text-shadow: 0 0 30px var(--danger-glow);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+}
+
+.accent { color: var(--accent); }
+
+/* ─── Threat Card ─── */
+.threat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+.threat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 8px 0;
+  gap: 12px;
+}
+
+.threat-row + .threat-row {
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.threat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+  min-width: 100px;
+}
+
+.threat-value {
+  font-size: 13px;
+  color: var(--text);
+  word-break: break-all;
+  text-align: right;
+}
+
+.threat-reason {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+/* ─── Buttons ─── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 24px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  letter-spacing: 0.5px;
+}
+
+.btn-safe {
+  background: linear-gradient(135deg, #00c853, #00e676);
+  color: #0a0a0c;
+  margin-bottom: 24px;
+}
+.btn-safe:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 200, 83, 0.35);
+}
+
+.btn-danger {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px;
+  padding: 10px 20px;
+}
+.btn-danger:hover {
+  color: var(--danger);
+  border-color: var(--danger);
+  background: var(--danger-glow);
+}
+
+/* ─── Bypass Section ─── */
+.bypass-section {
+  margin-top: 8px;
+}
+
+.bypass-warning {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* ─── Footer ─── */
+.footer {
+  margin-top: 36px;
+}
+.footer p {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* ─── Animations ─── */
+@keyframes float-up {
+  0%   { bottom: -10%; opacity: 0; transform: scale(1); }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.2; }
+  100% { bottom: 110%; opacity: 0; transform: scale(0.5); }
+}
+
+@keyframes pulse-danger {
+  0%, 100% { transform: scale(1);    filter: drop-shadow(0 0 20px var(--danger-glow)); }
+  50%      { transform: scale(1.05); filter: drop-shadow(0 0 40px rgba(255,23,68,0.3)); }
+}
+
+/* ─── Full-screen red vignette ─── */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse at center, transparent 40%, rgba(255,23,68,0.05) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
